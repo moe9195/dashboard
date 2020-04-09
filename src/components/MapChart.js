@@ -64,6 +64,7 @@ const MapChart = (props) => {
                   showcountries: true,
                   showocean: true,
                   oceancolor: "#030217",
+                  //   projection: { type: "orthographic" },
                 },
                 height: "420",
                 border: "solid",

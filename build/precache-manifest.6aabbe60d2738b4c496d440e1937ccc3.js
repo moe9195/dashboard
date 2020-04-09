@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "aa06f7afb5db059f373f",
+    "revision": "de28fd2b0bea3b88b39b",
     "url": "/covid-19-dashboard/static/css/main.f7958d82.chunk.css"
   },
   {
-    "revision": "aa06f7afb5db059f373f",
-    "url": "/covid-19-dashboard/static/js/main.aa06f7af.chunk.js"
+    "revision": "de28fd2b0bea3b88b39b",
+    "url": "/covid-19-dashboard/static/js/main.de28fd2b.chunk.js"
   },
   {
     "revision": "4f4498b215597d26d898",
@@ -20,32 +20,36 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/js/runtime~main.511ac8a8.js"
   },
   {
-    "revision": "6365c40aa59d462f1cc52ccce9635cb4",
-    "url": "/covid-19-dashboard/static/media/CircularStd-Book.6365c40a.otf"
-  },
-  {
     "revision": "4fcdd97fadc3a1d9887f816f2aa67f1d",
     "url": "/covid-19-dashboard/static/media/CircularStd-Medium.4fcdd97f.otf"
+  },
+  {
+    "revision": "6365c40aa59d462f1cc52ccce9635cb4",
+    "url": "/covid-19-dashboard/static/media/CircularStd-Book.6365c40a.otf"
   },
   {
     "revision": "6baed2bf580964bec9559ad83caee43d",
     "url": "/covid-19-dashboard/static/media/CircularStd-Bold.6baed2bf.otf"
   },
   {
-    "revision": "a06da7f0950f9dd366fc9db9d56d618a",
-    "url": "/covid-19-dashboard/static/media/fa-brands-400.a06da7f0.woff2"
-  },
-  {
     "revision": "ec3cfddedb8bebd2d7a3fdf511f7c1cc",
     "url": "/covid-19-dashboard/static/media/fa-brands-400.ec3cfdde.woff"
   },
   {
-    "revision": "261d666b0147c6c5cda07265f98b8f8c",
-    "url": "/covid-19-dashboard/static/media/fa-regular-400.261d666b.eot"
+    "revision": "c1868c9545d2de1cf8488f1dadd8c9d0",
+    "url": "/covid-19-dashboard/static/media/fa-brands-400.c1868c95.eot"
   },
   {
     "revision": "c20b5b7362d8d7bb7eddf94344ace33e",
     "url": "/covid-19-dashboard/static/media/fa-regular-400.c20b5b73.woff2"
+  },
+  {
+    "revision": "a06da7f0950f9dd366fc9db9d56d618a",
+    "url": "/covid-19-dashboard/static/media/fa-brands-400.a06da7f0.woff2"
+  },
+  {
+    "revision": "261d666b0147c6c5cda07265f98b8f8c",
+    "url": "/covid-19-dashboard/static/media/fa-regular-400.261d666b.eot"
   },
   {
     "revision": "f89ea91ecd1ca2db7e09baa2c4b156d1",
@@ -60,28 +64,24 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/fa-brands-400.13685372.ttf"
   },
   {
-    "revision": "b15db15f746f29ffa02638cb455b8ec0",
-    "url": "/covid-19-dashboard/static/media/fa-solid-900.b15db15f.woff2"
-  },
-  {
-    "revision": "c1868c9545d2de1cf8488f1dadd8c9d0",
-    "url": "/covid-19-dashboard/static/media/fa-brands-400.c1868c95.eot"
+    "revision": "bea989e82b07e9687c26fc58a4805021",
+    "url": "/covid-19-dashboard/static/media/fa-solid-900.bea989e8.woff"
   },
   {
     "revision": "89ffa3aba80d30ee0a9371b25c968bbb",
     "url": "/covid-19-dashboard/static/media/fa-regular-400.89ffa3ab.svg"
   },
   {
-    "revision": "a0369ea57eb6d3843d6474c035111f29",
-    "url": "/covid-19-dashboard/static/media/fa-solid-900.a0369ea5.eot"
-  },
-  {
-    "revision": "bea989e82b07e9687c26fc58a4805021",
-    "url": "/covid-19-dashboard/static/media/fa-solid-900.bea989e8.woff"
+    "revision": "b15db15f746f29ffa02638cb455b8ec0",
+    "url": "/covid-19-dashboard/static/media/fa-solid-900.b15db15f.woff2"
   },
   {
     "revision": "1ab236ed440ee51810c56bd16628aef0",
     "url": "/covid-19-dashboard/static/media/fa-solid-900.1ab236ed.ttf"
+  },
+  {
+    "revision": "a0369ea57eb6d3843d6474c035111f29",
+    "url": "/covid-19-dashboard/static/media/fa-solid-900.a0369ea5.eot"
   },
   {
     "revision": "0cb5a5c0d251c109458c85c6afeffbaa",
@@ -92,7 +92,7 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/fa-solid-900.ec763292.svg"
   },
   {
-    "revision": "23541a5b584ce2249d5136ceb78e30d3",
+    "revision": "9452326712cd1d87a0d790fb51f32c02",
     "url": "/covid-19-dashboard/index.html"
   }
 ];
