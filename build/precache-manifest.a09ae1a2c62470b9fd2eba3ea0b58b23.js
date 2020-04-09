@@ -32,6 +32,10 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/CircularStd-Bold.6baed2bf.otf"
   },
   {
+    "revision": "a06da7f0950f9dd366fc9db9d56d618a",
+    "url": "/covid-19-dashboard/static/media/fa-brands-400.a06da7f0.woff2"
+  },
+  {
     "revision": "ec3cfddedb8bebd2d7a3fdf511f7c1cc",
     "url": "/covid-19-dashboard/static/media/fa-brands-400.ec3cfdde.woff"
   },
@@ -40,16 +44,16 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/fa-brands-400.c1868c95.eot"
   },
   {
-    "revision": "c20b5b7362d8d7bb7eddf94344ace33e",
-    "url": "/covid-19-dashboard/static/media/fa-regular-400.c20b5b73.woff2"
-  },
-  {
-    "revision": "a06da7f0950f9dd366fc9db9d56d618a",
-    "url": "/covid-19-dashboard/static/media/fa-brands-400.a06da7f0.woff2"
-  },
-  {
     "revision": "261d666b0147c6c5cda07265f98b8f8c",
     "url": "/covid-19-dashboard/static/media/fa-regular-400.261d666b.eot"
+  },
+  {
+    "revision": "13685372945d816a2b474fc082fd9aaa",
+    "url": "/covid-19-dashboard/static/media/fa-brands-400.13685372.ttf"
+  },
+  {
+    "revision": "c20b5b7362d8d7bb7eddf94344ace33e",
+    "url": "/covid-19-dashboard/static/media/fa-regular-400.c20b5b73.woff2"
   },
   {
     "revision": "f89ea91ecd1ca2db7e09baa2c4b156d1",
@@ -60,14 +64,6 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/fa-regular-400.db78b935.ttf"
   },
   {
-    "revision": "13685372945d816a2b474fc082fd9aaa",
-    "url": "/covid-19-dashboard/static/media/fa-brands-400.13685372.ttf"
-  },
-  {
-    "revision": "bea989e82b07e9687c26fc58a4805021",
-    "url": "/covid-19-dashboard/static/media/fa-solid-900.bea989e8.woff"
-  },
-  {
     "revision": "89ffa3aba80d30ee0a9371b25c968bbb",
     "url": "/covid-19-dashboard/static/media/fa-regular-400.89ffa3ab.svg"
   },
@@ -76,12 +72,16 @@ self.__precacheManifest = [
     "url": "/covid-19-dashboard/static/media/fa-solid-900.b15db15f.woff2"
   },
   {
-    "revision": "1ab236ed440ee51810c56bd16628aef0",
-    "url": "/covid-19-dashboard/static/media/fa-solid-900.1ab236ed.ttf"
+    "revision": "bea989e82b07e9687c26fc58a4805021",
+    "url": "/covid-19-dashboard/static/media/fa-solid-900.bea989e8.woff"
   },
   {
     "revision": "a0369ea57eb6d3843d6474c035111f29",
     "url": "/covid-19-dashboard/static/media/fa-solid-900.a0369ea5.eot"
+  },
+  {
+    "revision": "1ab236ed440ee51810c56bd16628aef0",
+    "url": "/covid-19-dashboard/static/media/fa-solid-900.1ab236ed.ttf"
   },
   {
     "revision": "0cb5a5c0d251c109458c85c6afeffbaa",
