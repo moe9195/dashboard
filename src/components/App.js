@@ -191,11 +191,7 @@ class App extends Component {
                         }
                         id="regionswitch"
                       />{" "}
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label
-                        class="custom-control-label"
-                        for="regionswitch"
-                      />{" "}
+                      <label class="custom-control-label" for="regionswitch" />{" "}
                       {this.state.region && this.props.language
                         ? "show local data"
                         : this.state.region && !this.props.language

@@ -54,7 +54,7 @@ class TimeGraph extends Component {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 4.5vh 0vh 4.5vh" }}
+        style={{ padding: "0vh 5vh 0vh 5vh" }}
         onClick={() => this.handleOnClick(type)}
       >
         <font style={{ fontSize: "1.5vh" }}>

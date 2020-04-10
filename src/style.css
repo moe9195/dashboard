@@ -449,9 +449,9 @@ a:-webkit-any-link {
 .custom-switch .custom-control-label::after {
   background-color: #161616 !important;
 }
-.custom-switch {
+/* .custom-switch {
   padding-left: 0rem !important;
-}
+} */
 
 .custom-control {
   display: inline-block !important;
