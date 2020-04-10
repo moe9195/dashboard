@@ -449,6 +449,9 @@ a:-webkit-any-link {
 .custom-switch .custom-control-label::after {
   background-color: #161616 !important;
 }
+.custom-switch {
+  padding-left: 0rem !important;
+}
 
 .custom-control {
   display: inline-block !important;
@@ -468,13 +471,19 @@ a:-webkit-any-link {
 
 .change-region {
   padding: 0vh 5vh 0vh 5vh;
+  text-align: left;
+  width: 25%;
+}
+
+.change-language {
+  padding: 0vh 5vh 0vh 5vh;
   text-align: right;
-  width: 40%;
+  width: 25%;
 }
 
 .dashboard-title {
-  text-align: right;
-  width: 60%;
+  text-align: center;
+  width: 50%;
 }
 
 .h-33 {

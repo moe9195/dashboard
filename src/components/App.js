@@ -181,12 +181,35 @@ class App extends Component {
                   className=" card is-card-dark "
                   style={{ flexDirection: "row" }}
                 >
+                  <div className=" change-region">
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        onClick={() =>
+                          this.setState({ region: !this.state.region })
+                        }
+                        id="regionswitch"
+                      />{" "}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label
+                        class="custom-control-label"
+                        for="regionswitch"
+                      />{" "}
+                      {this.state.region && this.props.language
+                        ? "show local data"
+                        : this.state.region && !this.props.language
+                        ? "أظهر الدول العربية"
+                        : !this.state.region && !this.props.language
+                        ? "أظهر جميع الدول "
+                        : " show global data"}
+                    </div>
+                  </div>
                   <div className="dashboard-title">
                     {" "}
                     Coronavirus COVID-19 Global and Arab World Cases Dashboard
                   </div>
-
-                  <div className=" change-region">
+                  <div className=" change-language">
                     <div class="custom-control custom-switch">
                       <input
                         type="checkbox"
@@ -202,25 +225,6 @@ class App extends Component {
                         class="custom-control-label"
                         for="languageswitch"
                       />
-                    </div>
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        onClick={() =>
-                          this.setState({ region: !this.state.region })
-                        }
-                        id="regionswitch"
-                      />{" "}
-                      {this.state.region && this.props.language
-                        ? "show local data"
-                        : this.state.region && !this.props.language
-                        ? "أظهر الدول العربية"
-                        : !this.state.region && !this.props.language
-                        ? "أظهر جميع الدول "
-                        : " show global data"}
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="custom-control-label" for="regionswitch" />
                     </div>
                   </div>
                 </Container>
