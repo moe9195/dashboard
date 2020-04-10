@@ -52,6 +52,7 @@ const MapChart = ({ loading, data, region, language, setCountry }) => {
   }
   return (
     <div>
+      {" "}
       <Plot
         data={plotdata}
         layout={
@@ -68,14 +69,13 @@ const MapChart = ({ loading, data, region, language, setCountry }) => {
                   showcountries: true,
                   showocean: true,
                   oceancolor: "#030217"
-                  //   projection: { type: "orthographic" },
                 },
-                height: "420",
                 border: "solid",
                 margin: { l: 0, r: 0, t: 0, b: 0, pad: 0 },
                 plot_bgcolor: "rgba(0,0,0,0)",
                 paper_bgcolor: "rgba(0,0,0,0)",
-                autosize: true
+                autosize: true,
+                height: 440
               }
             : {
                 modebar: { bgcolor: "rgba(255,255,255,0)" },
@@ -89,16 +89,16 @@ const MapChart = ({ loading, data, region, language, setCountry }) => {
                   showcountries: true,
                   showocean: true,
                   oceancolor: "#030217",
-                  lonaxis: { range: [-19, 61] },
+                  lonaxis: { range: [-20, 61] },
                   lataxis: { range: [7, 47] }
                 },
-                height: "420",
                 border: "solid",
-                margin: { l: 0, r: 0, t: 0, b: 0, pad: 0 },
+                margin: { l: 5, r: 5, t: 0, b: 0, pad: 0 },
                 plot_bgcolor: "rgba(0,0,0,0)",
                 paper_bgcolor: "rgba(0,0,0,0)",
-                autosize: true
-              }
+                autosize: true,
+                height: 440
+              } // projection: { type: "", scale: 100 }
         }
         useResizeHandler={true}
         style={{ width: "100%", height: "100%" }}

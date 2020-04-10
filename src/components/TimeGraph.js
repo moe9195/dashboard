@@ -6,6 +6,9 @@ import Loading from "./Loading";
 import translate from "./translation";
 import arabicdictionaries from "./arabicCountries";
 
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const dictionary = arabicdictionaries[0];
 const countries = countryData[0];
 const countriesFull = countryData[1];
@@ -51,10 +54,13 @@ class TimeGraph extends Component {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 5.5vh 0vh 5.5vh" }}
+        style={{ padding: "0vh 4.5vh 0vh 4.5vh" }}
         onClick={() => this.handleOnClick(type)}
       >
-        {this.props.language ? type : translate[type]}
+        <font style={{ fontSize: "1.5vh" }}>
+          {" "}
+          {this.props.language ? type : translate[type]}
+        </font>
       </button>
     ));
 
@@ -121,7 +127,8 @@ class TimeGraph extends Component {
     }
     return (
       <div className=" padded">
-        {buttons}
+        &nbsp;&nbsp; <FontAwesomeIcon icon={faQuestionCircle} size="1x" />{" "}
+        &nbsp;&nbsp; {buttons}
         <div className="btn toggler">
           <div class="custom-control custom-switch ">
             <input
@@ -130,14 +137,11 @@ class TimeGraph extends Component {
               onClick={() => this.handleSwitch()}
               id="switch"
             />
-
-            <label
-              class="custom-control-label"
-              for="switch"
-              style={{ color: "#99aab5" }}
-            >
-              {this.props.language ? "logarithmic" : "لوغاريتمي"}
-            </label>
+            <label class="custom-control-label" for="switch" />
+            <font style={{ fontSize: "1.5vh", color: "#e1e5e8" }}>
+              {" "}
+              {this.props.language ? "Logarithmic" : "لوغاريتمي"}
+            </font>
           </div>
         </div>
         <div>
@@ -145,14 +149,14 @@ class TimeGraph extends Component {
             data={scatterData}
             layout={{
               modebar: { bgcolor: "rgba(255,255,255,0)" },
-              font: { color: "#99aab5", size: 12 },
+              font: { color: "#e1e5e8", size: 12 },
               xaxis: { nticks: 15 },
               yaxis: { type: logType },
               colorway: colorway,
               plot_bgcolor: "#191d20",
               paper_bgcolor: "#191d20",
               autosize: true,
-              height: "337",
+              height: 350,
               hovermode: "closest",
               margin: { l: 40, r: 20, t: 0, b: 0, pad: 0 },
               legend: {

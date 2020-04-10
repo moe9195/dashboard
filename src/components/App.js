@@ -172,41 +172,60 @@ class App extends Component {
 
       return (
         <Container>
-          <div className="sticky-top change-region">
-            <div class="custom-control custom-switch">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                onClick={() => this.props.changeLanguage(!this.props.language)}
-                id="languageswitch"
-              />{" "}
-              <text>{this.props.language ? "اللغة العربية" : "English"}</text>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <label class="custom-control-label" for="languageswitch" />
-            </div>
-            <div class="custom-control custom-switch">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                onClick={() => this.setState({ region: !this.state.region })}
-                id="regionswitch"
-              />{" "}
-              <text>
-                {this.state.region && this.props.language
-                  ? "show local data"
-                  : this.state.region && !this.props.language
-                  ? "أظهر الدول العربية"
-                  : !this.state.region && !this.props.language
-                  ? "أظهر جميع الدول "
-                  : " show global data"}
-              </text>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <label class="custom-control-label" for="regionswitch" />
-            </div>
-          </div>
-
           {/* content area start */}
           <Container className="container-fluid pr-1 pl-1 pt-1 pb-1">
+            {/* header */}
+            <Container className="row">
+              <Container className="col-md-4 col-lg-12 is-light-text mb-2 small-padding">
+                <Container
+                  className=" card is-card-dark "
+                  style={{ flexDirection: "row" }}
+                >
+                  <div className="dashboard-title">
+                    {" "}
+                    Coronavirus COVID-19 Global and Arab World Cases Dashboard
+                  </div>
+
+                  <div className=" change-region">
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        onClick={() =>
+                          this.props.changeLanguage(!this.props.language)
+                        }
+                        id="languageswitch"
+                      />{" "}
+                      {this.props.language ? "اللغة العربية" : "English"}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label
+                        class="custom-control-label"
+                        for="languageswitch"
+                      />
+                    </div>
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        onClick={() =>
+                          this.setState({ region: !this.state.region })
+                        }
+                        id="regionswitch"
+                      />{" "}
+                      {this.state.region && this.props.language
+                        ? "show local data"
+                        : this.state.region && !this.props.language
+                        ? "أظهر الدول العربية"
+                        : !this.state.region && !this.props.language
+                        ? "أظهر جميع الدول "
+                        : " show global data"}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="custom-control-label" for="regionswitch" />
+                    </div>
+                  </div>
+                </Container>
+              </Container>
+            </Container>
             {/* row 1  */}
             <Container className="row">
               {/* counter list  */}
@@ -277,8 +296,8 @@ class App extends Component {
                 </Container>
               </Container>
 
-              <Container className="col-lg-6 col-sm-6 is-light-text mb-3 small-padding">
-                <Container className="card grid-card is-card-dark">
+              <Container className="col-md-4 col-lg-6 is-light-text mb-3 small-padding">
+                <Container className="card is-card-dark info-card">
                   <CountryInfo
                     global={this.state.global.result}
                     language={this.props.language}

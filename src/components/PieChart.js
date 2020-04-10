@@ -4,6 +4,8 @@ import colormap from "colormap";
 import countryData from "./countries";
 import Loading from "./Loading";
 import translate from "./translation";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const countries = countryData[1];
 
@@ -32,10 +34,12 @@ class PieChart extends Component {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 3.37vh 0vh 3.37vh" }}
+        style={{ padding: "0vh 3vh 0vh 3vh" }}
         onClick={() => this.handleOnClick(type)}
       >
-        {this.props.language ? type : translate[type]}
+        <font style={{ fontSize: "1.5vh" }}>
+          {this.props.language ? type : translate[type]}
+        </font>
       </button>
     ));
 
@@ -109,8 +113,13 @@ class PieChart extends Component {
     }
     return (
       <div className="padded">
-        <div style={{ padding: "0.25rem 0.0rem 0.5rem 0.0rem" }}>
+        <div style={{ padding: "0.25rem 0.0rem 0.35rem 0.0rem" }}>
           {" "}
+          &nbsp;&nbsp; <FontAwesomeIcon
+            icon={faQuestionCircle}
+            size="1x"
+          />{" "}
+          &nbsp;&nbsp;
           {buttons}
         </div>
 
@@ -124,7 +133,7 @@ class PieChart extends Component {
               colorway: colorway.reverse(),
               plot_bgcolor: "#191d20",
               paper_bgcolor: "#191d20",
-              height: "337",
+              height: 355,
               autosize: true,
               margin: { l: 10, r: 10, t: 5, b: 5, pad: 0 }
             }}

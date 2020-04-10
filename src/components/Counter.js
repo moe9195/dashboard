@@ -33,7 +33,7 @@ class Counter extends Component {
           <font style={{ color: "red", fontSize: "18px" }}>
             {country.confirmed}
           </font>
-          <font style={{ fontSize: "16px", color: "#99aab5" }}>
+          <font style={{ fontSize: "16px", color: "#e1e5e8" }}>
             &nbsp;&nbsp;
             {country.name}
           </font>
@@ -47,7 +47,7 @@ class Counter extends Component {
           <font style={{ color: "red", fontSize: "18px" }}>
             {country.deaths}
           </font>
-          <font style={{ fontSize: "16px", color: "#99aab5" }}>
+          <font style={{ fontSize: "16px", color: "#e1e5e8" }}>
             &nbsp;&nbsp;
             {country.name}
           </font>
@@ -61,7 +61,7 @@ class Counter extends Component {
           <font style={{ color: "red", fontSize: "18px" }}>
             {country.recovered}
           </font>
-          <font style={{ fontSize: "16px", color: "#99aab5" }}>
+          <font style={{ fontSize: "16px", color: "#e1e5e8" }}>
             &nbsp;&nbsp;
             {country.name}
           </font>

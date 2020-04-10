@@ -6,6 +6,9 @@ import axios from "axios";
 import arabicdictionaries from "./arabicCountries";
 import translate from "./translation";
 
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const dictionary = countryData[4];
 const arabicdictionary = arabicdictionaries[0];
 
@@ -126,10 +129,14 @@ const CountryInfo = ({ country, global, language }) => {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 5vh 0vh 5vh" }}
+        style={{ padding: "0vh 4.5vh 0vh 4.5vh" }}
         onClick={() => handleOnClick(type)}
       >
-        {language ? type : translate[type]}
+        {" "}
+        <font style={{ fontSize: "1.5vh" }}>
+          {" "}
+          {language ? type : translate[type]}
+        </font>
       </button>
     ));
     let select =
@@ -144,6 +151,8 @@ const CountryInfo = ({ country, global, language }) => {
         : null;
     return (
       <div className="padded">
+        &nbsp;&nbsp; <FontAwesomeIcon icon={faQuestionCircle} size="1x" />{" "}
+        &nbsp;&nbsp;
         {buttons}
         <div className="btn toggler">
           <div class="custom-control custom-switch ">
@@ -157,10 +166,12 @@ const CountryInfo = ({ country, global, language }) => {
             <label
               class="custom-control-label"
               for="country-info-switch"
-              style={{ color: "#99aab5" }}
-            >
-              {language ? "logarithmic" : "لوغاريتمي"}
-            </label>
+              style={{ color: "#e1e5e8" }}
+            />
+            <font style={{ fontSize: "1.5vh", color: "#e1e5e8" }}>
+              {" "}
+              {language ? "Logarithmic" : "لوغاريتمي"}
+            </font>
           </div>
         </div>
         <div>
@@ -176,13 +187,13 @@ const CountryInfo = ({ country, global, language }) => {
                   : country && language
                   ? `${dictionary[country]}`
                   : `${arabicdictionary[country]}`,
-              font: { color: "#99aab5", size: 12 },
+              font: { color: "#e1e5e8", size: 12 },
               xaxis: { nticks: 15 },
               yaxis: { type: logType },
               margin: { l: 40, r: 20, t: 50, b: 40, pad: 0 },
               plot_bgcolor: "#191d20",
               paper_bgcolor: "#191d20",
-              height: "385",
+              height: 395,
               autosize: true
             }}
             useResizeHandler={true}
