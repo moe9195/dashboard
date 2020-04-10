@@ -21,7 +21,6 @@ const Loading = () => (
     <br />
     <br />
     <br />
-    <br />
     <FontAwesomeIcon icon={faSpinner} spin size="5x" />
     <br />
     <br />

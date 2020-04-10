@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./redux";
-import { HashRouter } from "react-router-dom";
+
 import { Provider } from "react-redux";
 
 import "react-dropdown/style.css";
@@ -13,9 +13,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <App />
   </Provider>,
   document.getElementById("root")
 );
