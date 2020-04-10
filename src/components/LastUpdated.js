@@ -3,7 +3,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://covidapi.info/api/v1/",
-  loading: true,
+  loading: true
 });
 
 const LastUpdated = () => {
