@@ -75,7 +75,7 @@ body {
   background: #05090c !important;
   font-family: "basefont-regular" !important;
   color: rgb(153, 170, 181);
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .container-fluid {
@@ -192,7 +192,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  padding: 0rem 0rem 0rem 0rem;
   height: calc(100%);
 }
 

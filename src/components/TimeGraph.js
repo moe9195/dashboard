@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import Plot from "react-plotly.js";
-import axios from "axios";
 import colormap from "colormap";
 import countryData from "./countries";
 import Loading from "./Loading";
+import translate from "./translation";
+import arabicdictionaries from "./arabicCountries";
 
+const dictionary = arabicdictionaries[0];
 const countries = countryData[0];
 const countriesFull = countryData[1];
 
 class TimeGraph extends Component {
   state = {
     selector: "confirmed",
-    logarithmic: false,
+    logarithmic: false
   };
 
-  capitalizeFirstLetter = (string) => {
+  capitalizeFirstLetter = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
@@ -32,7 +34,7 @@ class TimeGraph extends Component {
     return newArr;
   };
 
-  handleOnClick = (selected) => {
+  handleOnClick = selected => {
     this.setState({ selector: selected });
   };
   handleSwitch = () => {
@@ -42,17 +44,17 @@ class TimeGraph extends Component {
   render() {
     const selectors = ["confirmed", "deaths", "recovered"];
 
-    const buttons = selectors.map((selector) => (
+    const buttons = selectors.map(type => (
       <button
         className={
-          this.state.selector === selector
+          this.state.selector === type
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
         style={{ padding: "0vh 5.5vh 0vh 5.5vh" }}
-        onClick={() => this.handleOnClick(selector)}
+        onClick={() => this.handleOnClick(type)}
       >
-        {selector}
+        {this.props.language ? type : translate[type]}
       </button>
     ));
 
@@ -99,7 +101,9 @@ class TimeGraph extends Component {
         x: dateArr,
         y: plotDataY[select][i],
         type: "scatter",
-        name: countriesFull[i - 1],
+        name: this.props.language
+          ? countriesFull[i - 1]
+          : dictionary[countries[i - 1]]
       };
       scatterData.push(trace);
     }
@@ -109,7 +113,7 @@ class TimeGraph extends Component {
       colormap: "jet",
       nshades: countries.length,
       format: "hex",
-      alpha: 1,
+      alpha: 1
     });
 
     if (this.props.loading) {
@@ -132,7 +136,7 @@ class TimeGraph extends Component {
               for="switch"
               style={{ color: "#99aab5" }}
             >
-              logarithmic
+              {this.props.language ? "logarithmic" : "لوغاريتمي"}
             </label>
           </div>
         </div>
@@ -141,7 +145,6 @@ class TimeGraph extends Component {
             data={scatterData}
             layout={{
               modebar: { bgcolor: "rgba(255,255,255,0)" },
-              title: `Total ${this.capitalizeFirstLetter(this.state.selector)}`,
               font: { color: "#99aab5", size: 12 },
               xaxis: { nticks: 15 },
               yaxis: { type: logType },
@@ -160,8 +163,8 @@ class TimeGraph extends Component {
                 y: -0.1,
                 x: 0.5,
                 autosize: true,
-                orientation: "h",
-              },
+                orientation: "h"
+              }
             }}
             config={{
               modeBarButtonsToRemove: [
@@ -170,9 +173,9 @@ class TimeGraph extends Component {
                 "zoomOut2d",
                 "autoScale2d",
                 "hoverClosestCartesian",
-                "hoverCompareCartesian",
+                "hoverCompareCartesian"
               ],
-              displaylogo: false,
+              displaylogo: false
             }}
             useResizeHandler={true}
             style={{ width: "100%", height: "100%" }}

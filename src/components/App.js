@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Container } from "./styled-components";
 import countryData from "./countries";
+import arabicdictionaries from "./arabicCountries";
 import axios from "axios";
 import Loading from "./Loading";
+import { connect } from "react-redux";
+
+import { changeLanguage } from "../redux/actions";
 
 import Counter from "./Counter";
 import TotalCounter from "./TotalCounter";
@@ -15,10 +19,11 @@ import LastUpdated from "./LastUpdated";
 
 const MENA = countryData[0];
 const dictionary = countryData[4];
+const arabicdictionary = arabicdictionaries[0];
 
 const instance = axios.create({
   baseURL: "https://covidapi.info/api/v1/",
-  loading: true,
+  loading: true
 });
 
 class App extends Component {
@@ -26,10 +31,10 @@ class App extends Component {
     data: null,
     dataCountries: null,
     loading: true,
-    region: false,
+    region: false
   };
 
-  fetchData = async (countries) => {
+  fetchData = async countries => {
     try {
       let response1 = await instance.get(`global/latest`);
       let data1 = response1.data;
@@ -45,7 +50,7 @@ class App extends Component {
         dataCountries: data1,
         timeData: dict,
         global: data2,
-        loading: false,
+        loading: false
       });
     } catch (error) {
       console.error(error);
@@ -61,21 +66,27 @@ class App extends Component {
       cleanedRecovered = [],
       cleanedDeaths = [];
     if (region) {
-      items.map((country) => {
+      items.map(country => {
         let countryName = Object.keys(country)[0];
         console.log(MENA);
         if (MENA.indexOf(countryName) !== -1) {
           let confirmedObj = {
-            name: dictionary[countryName],
-            confirmed: country[countryName].confirmed,
+            name: this.props.language
+              ? dictionary[countryName]
+              : arabicdictionary[countryName],
+            confirmed: country[countryName].confirmed
           };
           let recoveredObj = {
-            name: dictionary[countryName],
-            recovered: country[countryName].recovered,
+            name: this.props.language
+              ? dictionary[countryName]
+              : arabicdictionary[countryName],
+            recovered: country[countryName].recovered
           };
           let deathsObj = {
-            name: dictionary[countryName],
-            deaths: country[countryName].deaths,
+            name: this.props.language
+              ? dictionary[countryName]
+              : arabicdictionary[countryName],
+            deaths: country[countryName].deaths
           };
           cleanedConfirmed.push(confirmedObj);
           cleanedRecovered.push(recoveredObj);
@@ -83,19 +94,25 @@ class App extends Component {
         }
       });
     } else {
-      items.map((country) => {
+      items.map(country => {
         let countryName = Object.keys(country)[0];
         let confirmedObj = {
-          name: dictionary[countryName],
-          confirmed: country[countryName].confirmed,
+          name: this.props.language
+            ? dictionary[countryName]
+            : arabicdictionary[countryName],
+          confirmed: country[countryName].confirmed
         };
         let recoveredObj = {
-          name: dictionary[countryName],
-          recovered: country[countryName].recovered,
+          name: this.props.language
+            ? dictionary[countryName]
+            : arabicdictionary[countryName],
+          recovered: country[countryName].recovered
         };
         let deathsObj = {
-          name: dictionary[countryName],
-          deaths: country[countryName].deaths,
+          name: this.props.language
+            ? dictionary[countryName]
+            : arabicdictionary[countryName],
+          deaths: country[countryName].deaths
         };
         cleanedConfirmed.push(confirmedObj);
         cleanedRecovered.push(recoveredObj);
@@ -139,19 +156,19 @@ class App extends Component {
         totalDeathsMENA = 0,
         totalRecoveredMENA = 0;
       confirmedDataMENA.map(
-        (country) => (totalConfirmedMENA += country.confirmed)
+        country => (totalConfirmedMENA += country.confirmed)
       );
-      deathsDataMENA.map((country) => (totalDeathsMENA += country.deaths));
+      deathsDataMENA.map(country => (totalDeathsMENA += country.deaths));
       recoveredDataMENA.map(
-        (country) => (totalRecoveredMENA += country.recovered)
+        country => (totalRecoveredMENA += country.recovered)
       );
 
       let totalConfirmed = 0,
         totalDeaths = 0,
         totalRecovered = 0;
-      confirmedData.map((country) => (totalConfirmed += country.confirmed));
-      deathsData.map((country) => (totalDeaths += country.deaths));
-      recoveredData.map((country) => (totalRecovered += country.recovered));
+      confirmedData.map(country => (totalConfirmed += country.confirmed));
+      deathsData.map(country => (totalDeaths += country.deaths));
+      recoveredData.map(country => (totalRecovered += country.recovered));
 
       return (
         <Container>
@@ -160,16 +177,34 @@ class App extends Component {
               <input
                 type="checkbox"
                 class="custom-control-input"
+                onClick={() => this.props.changeLanguage(!this.props.language)}
+                id="languageswitch"
+              />{" "}
+              <text>{this.props.language ? "اللغة العربية" : "English"}</text>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label class="custom-control-label" for="languageswitch" />
+            </div>
+            <div class="custom-control custom-switch">
+              <input
+                type="checkbox"
+                class="custom-control-input"
                 onClick={() => this.setState({ region: !this.state.region })}
                 id="regionswitch"
               />{" "}
               <text>
-                {this.state.region ? "switch to local" : "switch to global"}
+                {this.state.region && this.props.language
+                  ? "show local data"
+                  : this.state.region && !this.props.language
+                  ? "أظهر الدول العربية"
+                  : !this.state.region && !this.props.language
+                  ? "أظهر جميع الدول "
+                  : " show global data"}
               </text>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <label class="custom-control-label" for="regionswitch" />
             </div>
           </div>
+
           {/* content area start */}
           <Container className="container-fluid pr-1 pl-1 pt-1 pb-1">
             {/* row 1  */}
@@ -183,10 +218,11 @@ class App extends Component {
                         ? [
                             totalConfirmedMENA,
                             totalDeathsMENA,
-                            totalRecoveredMENA,
+                            totalRecoveredMENA
                           ]
                         : [totalConfirmed, totalDeaths, totalRecovered]
                     }
+                    language={this.props.language}
                   />
                 </Container>
               </Container>
@@ -200,6 +236,7 @@ class App extends Component {
                         : [confirmedData, deathsData, recoveredData]
                     }
                     loading={this.state.loading}
+                    language={this.props.language}
                   />
                 </Container>
               </Container>
@@ -210,6 +247,7 @@ class App extends Component {
                   <TimeGraph
                     data={this.state.timeData}
                     loading={this.state.loading}
+                    language={this.props.language}
                   />
                 </Container>
               </Container>
@@ -219,6 +257,7 @@ class App extends Component {
                   <PieChart
                     data={[confirmedData, deathsData, recoveredData]}
                     loading={this.state.loading}
+                    language={this.props.language}
                   />
                 </Container>
               </Container>
@@ -233,28 +272,32 @@ class App extends Component {
                     data={this.state.region ? confirmedDataMENA : confirmedData}
                     loading={this.state.loading}
                     region={this.state.region}
+                    language={this.props.language}
                   />
                 </Container>
               </Container>
 
               <Container className="col-lg-6 col-sm-6 is-light-text mb-3 small-padding">
                 <Container className="card grid-card is-card-dark">
-                  <CountryInfo global={this.state.global.result} />
+                  <CountryInfo
+                    global={this.state.global.result}
+                    language={this.props.language}
+                  />
                 </Container>
               </Container>
             </Container>
 
             {/* footer */}
             <Container className="row">
-              <Container className="col-md-4 col-lg-2 is-light-text mb-3 small-padding">
+              <Container className="col-md-4 col-lg-2 is-light-text mb-2 small-padding">
                 <Container className="card footer-card is-card-dark">
-                  <LastUpdated />
+                  <LastUpdated language={this.props.language} />
                 </Container>
               </Container>
 
-              <Container className="col-md-4 col-lg-10 is-light-text mb-3 small-padding">
+              <Container className="col-md-4 col-lg-10 is-light-text mb-2 small-padding">
                 <Container className="card is-card-dark footer-card">
-                  <Footer />
+                  <Footer language={this.props.language} />
                 </Container>
               </Container>
             </Container>
@@ -272,4 +315,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    language: state.data.language
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeLanguage: language => dispatch(changeLanguage(language))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

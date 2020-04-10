@@ -6,7 +6,7 @@ const instance = axios.create({
   loading: true
 });
 
-const LastUpdated = () => {
+const LastUpdated = ({ language }) => {
   const [date, setDate] = useState(null);
   const [loading, setLoading] = useState(true);
   const fetchDate = async () => {
@@ -25,18 +25,44 @@ const LastUpdated = () => {
     fetchDate();
   });
 
-  return (
-    <div>
-      <div style={{ opacity: "0.5", textAlign: "center", paddingLeft: "1rem" }}>
-        {" "}
-        Last Updated at (MM/DD/YYYY) <br />
+  if (language) {
+    return (
+      <div>
+        <div
+          style={{ opacity: "0.5", textAlign: "center", paddingLeft: "1rem" }}
+        >
+          {" "}
+          Last Updated at (MM/DD/YYYY) <br />
+        </div>
+        <div style={{ fontSize: 18, textAlign: "center" }}>
+          {" "}
+          {loading ? "" : `${date}`}
+        </div>
       </div>
-      <div style={{ fontSize: 20, textAlign: "center" }}>
-        {" "}
-        {loading ? "" : `${date}`}
+    );
+  } else {
+    return (
+      <div>
+        <div
+          style={{
+            opacity: "0.5",
+            textAlign: "center",
+            paddingLeft: "1rem",
+            language: "ar",
+            direction: "rtl"
+          }}
+        >
+          {" "}
+          التحديث الأخير في&nbsp; (يوم / شهر / سنة)
+          <br />
+        </div>
+        <div style={{ fontSize: 18, textAlign: "center" }}>
+          {" "}
+          {loading ? "" : `${date}`}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default LastUpdated;

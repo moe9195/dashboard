@@ -1,24 +1,26 @@
 import React from "react";
 import { Container } from "./styled-components";
 
-const TotalCounter = (props) => {
+const TotalCounter = ({ data, language }) => {
   return (
     <div className="container-fluid padded ">
       <Container className=" padded">
         <Container className="row ">
           <Container className="card total-card is-card-dark is-total-text">
             <font style={{ fontSize: "18px", color: "#99aab5" }}>
-              Confirmed
+              {language ? "Confirmed" : "الإجمالي"}
             </font>
-            {props.data[0]}
+            {data[0]}
           </Container>
         </Container>
       </Container>
       <Container className=" padded">
         <Container className="row">
           <Container className="card total-card is-card-dark is-total-text">
-            <font style={{ fontSize: "18px", color: "#99aab5" }}>Deaths</font>
-            {props.data[1]}
+            <font style={{ fontSize: "18px", color: "#99aab5" }}>
+              {language ? "Deaths" : "حالات وفاة"}
+            </font>
+            {data[1]}
           </Container>
         </Container>
       </Container>
@@ -26,9 +28,9 @@ const TotalCounter = (props) => {
         <Container className="row ">
           <Container className="card total-card is-card-dark is-total-text">
             <font style={{ fontSize: "18px", color: "#99aab5" }}>
-              Recovered
+              {language ? "Recovered" : "حالات شفاء"}
             </font>
-            {props.data[2]}
+            {data[2]}
           </Container>
         </Container>
       </Container>

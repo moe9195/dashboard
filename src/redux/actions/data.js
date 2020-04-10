@@ -1,5 +1,4 @@
-import { SET_COUNTRY, SET_DATA, LOADING } from "./actionTypes";
-import axios from "axios";
+import { SET_COUNTRY, SET_DATA, LOADING, CHANGE_LANGUAGE } from "./actionTypes";
 
 // const instance = axios.create({
 //   baseURL: "https://covid19.mathdro.id/api/countries/",
@@ -15,14 +14,18 @@ import axios from "axios";
 //   }
 // };
 
-export const setData = (data) => {
+export const setData = data => {
   return { type: SET_DATA, payload: data };
 };
 
-export const loading = (condition) => {
+export const loading = condition => {
   return { type: LOADING, payload: condition };
 };
 
-export const setCountry = (country) => {
+export const setCountry = country => {
   return { type: SET_COUNTRY, payload: country };
+};
+
+export const changeLanguage = language => {
+  return { type: CHANGE_LANGUAGE, payload: language };
 };

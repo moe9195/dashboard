@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import countryData from "./countries";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Loading from "./Loading";
@@ -9,7 +8,7 @@ import { setData } from "../redux/actions";
 class Counter extends Component {
   state = {
     data: null,
-    loading: true,
+    loading: true
   };
 
   componentDidUpdate(prevProps) {
@@ -27,7 +26,7 @@ class Counter extends Component {
     const deathsData = this.props.data[1];
     const recoveredData = this.props.data[2];
 
-    confirmedRows = confirmedData.map((country) => (
+    confirmedRows = confirmedData.map(country => (
       <tr>
         <td>
           &nbsp;&nbsp;&nbsp;
@@ -41,7 +40,7 @@ class Counter extends Component {
         </td>
       </tr>
     ));
-    deadRows = deathsData.map((country) => (
+    deadRows = deathsData.map(country => (
       <tr>
         <td>
           &nbsp;&nbsp;&nbsp;
@@ -55,7 +54,7 @@ class Counter extends Component {
         </td>
       </tr>
     ));
-    recoveredRows = recoveredData.map((country) => (
+    recoveredRows = recoveredData.map(country => (
       <tr>
         <td>
           &nbsp;&nbsp;&nbsp;
@@ -70,7 +69,7 @@ class Counter extends Component {
       </tr>
     ));
 
-    recoveredData.map((country) => console.log(country));
+    recoveredData.map(country => console.log(country));
 
     if (this.props.loading) {
       return <Loading />;
@@ -78,21 +77,30 @@ class Counter extends Component {
     return (
       <div className="counter-nav">
         <Tabs defaultActiveKey="confirmed" id="counter">
-          <Tab eventKey="confirmed" title="Confirmed">
+          <Tab
+            eventKey="confirmed"
+            title={this.props.language ? "Confirmed" : "الإجمالي"}
+          >
             <div className="card mx-auto counter list my-custom-scrollbar">
               <table class="table-dark table-bordered ">
                 <tbody>{this.props.loading ? "" : confirmedRows}</tbody>
               </table>
             </div>
           </Tab>
-          <Tab eventKey="deaths" title="Deaths">
+          <Tab
+            eventKey="deaths"
+            title={this.props.language ? "Deaths" : "حالات وفاة"}
+          >
             <div className="card mx-auto counter list my-custom-scrollbar">
               <table class="table-dark table-bordered ">
                 <tbody> {this.props.loading ? "" : deadRows}</tbody>
               </table>
             </div>
           </Tab>
-          <Tab eventKey="recovered" title="Recovered">
+          <Tab
+            eventKey="recovered"
+            title={this.props.language ? "Recovered" : "حالات شفاء"}
+          >
             <div className="card mx-auto counter list my-custom-scrollbar">
               <table class="table-dark table-bordered">
                 <tbody> {this.props.loading ? "" : recoveredRows}</tbody>
@@ -105,9 +113,9 @@ class Counter extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setData: (data) => dispatch(setData(data)),
+    setData: data => dispatch(setData(data))
   };
 };
 

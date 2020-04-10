@@ -3,16 +3,18 @@ import Plot from "react-plotly.js";
 import countryData from "./countries";
 import { connect } from "react-redux";
 import axios from "axios";
-import { compose } from "redux";
+import arabicdictionaries from "./arabicCountries";
+import translate from "./translation";
 
 const dictionary = countryData[4];
+const arabicdictionary = arabicdictionaries[0];
 
 const instance = axios.create({
   baseURL: "https://covidapi.info/api/v1/",
-  loading: true,
+  loading: true
 });
 
-const CountryInfo = ({ country, global }) => {
+const CountryInfo = ({ country, global, language }) => {
   const [data, setData] = useState(global);
   const [loading, setLoading] = useState(true);
   const [X, setX] = useState([]);
@@ -27,11 +29,11 @@ const CountryInfo = ({ country, global }) => {
     setLogarithmic(!logarithmic);
   };
 
-  const handleOnClick = (selected) => {
+  const handleOnClick = selected => {
     setSelector(selected);
   };
 
-  const fetchData = async (country) => {
+  const fetchData = async country => {
     try {
       let response = await instance.get(`country/${country}`);
       let countryData = response.data.result;
@@ -85,7 +87,7 @@ const CountryInfo = ({ country, global }) => {
       name: "Confirmed",
       mode: "lines+markers",
       line: { color: "#ff0000" },
-      marker: { color: "#ff0000" },
+      marker: { color: "#ff0000" }
     };
     const trace2 = {
       x: X,
@@ -94,7 +96,7 @@ const CountryInfo = ({ country, global }) => {
       name: "Deaths",
       mode: "lines+markers",
       line: { color: "#ff0000" },
-      marker: { color: "#ff0000" },
+      marker: { color: "#ff0000" }
     };
     const trace3 = {
       x: X,
@@ -103,7 +105,7 @@ const CountryInfo = ({ country, global }) => {
       name: "Recovered",
       mode: "lines+markers",
       line: { color: "#ff0000" },
-      marker: { color: "#ff0000" },
+      marker: { color: "#ff0000" }
     };
     const bar = {
       x: X,
@@ -111,13 +113,13 @@ const CountryInfo = ({ country, global }) => {
       type: "bar",
       name: "New Cases",
       line: { color: "#ff0000" },
-      marker: { color: "#ff0000" },
+      marker: { color: "#ff0000" }
     };
     const plotData = [trace1, trace2, trace3, bar];
 
     const selectors = ["confirmed", "deaths", "recovered", "daily increase"];
 
-    const buttons = selectors.map((type) => (
+    const buttons = selectors.map(type => (
       <button
         className={
           selector === type
@@ -127,7 +129,7 @@ const CountryInfo = ({ country, global }) => {
         style={{ padding: "0vh 5vh 0vh 5vh" }}
         onClick={() => handleOnClick(type)}
       >
-        {type}
+        {language ? type : translate[type]}
       </button>
     ));
     let select =
@@ -157,7 +159,7 @@ const CountryInfo = ({ country, global }) => {
               for="country-info-switch"
               style={{ color: "#99aab5" }}
             >
-              logarithmic
+              {language ? "logarithmic" : "لوغاريتمي"}
             </label>
           </div>
         </div>
@@ -166,7 +168,14 @@ const CountryInfo = ({ country, global }) => {
             data={[plotData[select]]}
             layout={{
               modebar: { bgcolor: "rgba(255,255,255,0)" },
-              title: !country ? "Global" : `${dictionary[country]}`,
+              title:
+                !country && language
+                  ? "Global"
+                  : !country && !language
+                  ? "العالم"
+                  : country && language
+                  ? `${dictionary[country]}`
+                  : `${arabicdictionary[country]}`,
               font: { color: "#99aab5", size: 12 },
               xaxis: { nticks: 15 },
               yaxis: { type: logType },
@@ -174,7 +183,7 @@ const CountryInfo = ({ country, global }) => {
               plot_bgcolor: "#191d20",
               paper_bgcolor: "#191d20",
               height: "385",
-              autosize: true,
+              autosize: true
             }}
             useResizeHandler={true}
             style={{ width: "100%", height: "100%" }}
@@ -187,9 +196,9 @@ const CountryInfo = ({ country, global }) => {
                 "hoverClosestCartesian",
                 "hoverCompareCartesian",
                 "select2d",
-                "lasso2d",
+                "lasso2d"
               ],
-              displaylogo: false,
+              displaylogo: false
             }}
           />
         </div>
@@ -199,9 +208,9 @@ const CountryInfo = ({ country, global }) => {
     return <div>Click on a country from the map</div>;
   }
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    country: state.data.country,
+    country: state.data.country
   };
 };
 

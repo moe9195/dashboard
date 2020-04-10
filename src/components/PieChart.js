@@ -3,12 +3,13 @@ import Plot from "react-plotly.js";
 import colormap from "colormap";
 import countryData from "./countries";
 import Loading from "./Loading";
+import translate from "./translation";
 
 const countries = countryData[1];
 
 class PieChart extends Component {
   state = {
-    selector: "confirmed",
+    selector: "confirmed"
   };
 
   componentDidUpdate(prevProps) {
@@ -17,24 +18,24 @@ class PieChart extends Component {
     }
   }
 
-  handleOnClick = (selected) => {
+  handleOnClick = selected => {
     this.setState({ selector: selected });
   };
 
   render() {
     const selectors = ["confirmed", "deaths", "recovered"];
 
-    const buttons = selectors.map((selector) => (
+    const buttons = selectors.map(type => (
       <button
         className={
-          this.state.selector === selector
+          this.state.selector === type
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
         style={{ padding: "0vh 3.37vh 0vh 3.37vh" }}
-        onClick={() => this.handleOnClick(selector)}
+        onClick={() => this.handleOnClick(type)}
       >
-        {selector}
+        {this.props.language ? type : translate[type]}
       </button>
     ));
 
@@ -44,21 +45,21 @@ class PieChart extends Component {
 
     let confirmedX = [],
       confirmedY = [];
-    confirmedData.map((country) => {
+    confirmedData.map(country => {
       confirmedX.push(country.name);
       confirmedY.push(country.confirmed);
     });
 
     let deathsX = [],
       deathsY = [];
-    deathsData.map((country) => {
+    deathsData.map(country => {
       deathsX.push(country.name);
       deathsY.push(country.deaths);
     });
 
     let recoveredX = [],
       recoveredY = [];
-    recoveredData.map((country) => {
+    recoveredData.map(country => {
       recoveredX.push(country.name);
       recoveredY.push(country.recovered);
     });
@@ -67,7 +68,7 @@ class PieChart extends Component {
       colormap: "jet",
       nshades: countries.length,
       format: "hex",
-      alpha: 1,
+      alpha: 1
     });
 
     let data = null;
@@ -78,8 +79,8 @@ class PieChart extends Component {
           labels: confirmedX,
           type: "pie",
           textinfo: "label",
-          rotation: "-20",
-        },
+          rotation: "-20"
+        }
       ];
     } else if (this.state.selector === "deaths") {
       data = [
@@ -88,8 +89,8 @@ class PieChart extends Component {
           labels: deathsX,
           type: "pie",
           textinfo: "label",
-          rotation: "-20",
-        },
+          rotation: "-20"
+        }
       ];
     } else {
       data = [
@@ -98,8 +99,8 @@ class PieChart extends Component {
           labels: recoveredX,
           type: "pie",
           textinfo: "label",
-          rotation: "-20",
-        },
+          rotation: "-20"
+        }
       ];
     }
 
@@ -125,7 +126,7 @@ class PieChart extends Component {
               paper_bgcolor: "#191d20",
               height: "337",
               autosize: true,
-              margin: { l: 10, r: 10, t: 5, b: 5, pad: 0 },
+              margin: { l: 10, r: 10, t: 5, b: 5, pad: 0 }
             }}
             config={{
               modeBarButtonsToRemove: [
@@ -135,9 +136,9 @@ class PieChart extends Component {
                 "autoScale2d",
                 "hoverClosestCartesian",
                 "hoverCompareCartesian",
-                "hoverClosestPie",
+                "hoverClosestPie"
               ],
-              displaylogo: false,
+              displaylogo: false
             }}
             useResizeHandler={true}
             style={{ width: "100%", height: "100%" }}
