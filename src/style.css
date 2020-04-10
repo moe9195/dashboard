@@ -74,7 +74,7 @@
 body {
   background: #05090c !important;
   font-family: "basefont-regular" !important;
-  color: #e1e5e8;
+  color: rgb(153, 170, 181);
   padding-top: 0.5rem;
 }
 
@@ -332,10 +332,8 @@ body {
   font-family: "Times";
   padding: 0vh 0vh;
 
-  border-style: solid;
-  border-width: 0.5vh;
-  border-color: black;
-  border-radius: 0rem;
+  border-style: hidden;
+
   margin-left: 0rem !important;
 }
 .my-custom-scrollbar {
