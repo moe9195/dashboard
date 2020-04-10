@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/covid-19-dashboard/static/js/runtime~main.511ac8a8.js.map",
   "static/media/style.css": "/covid-19-dashboard/static/media/CircularStd-Bold.6baed2bf.otf",
   "static/media/all.css": "/covid-19-dashboard/static/media/fa-solid-900.ec763292.svg",
-  "static/css/main.f7958d82.chunk.css.map": "/covid-19-dashboard/static/css/main.f7958d82.chunk.css.map",
   "static/css/1.db0fa906.chunk.css.map": "/covid-19-dashboard/static/css/1.db0fa906.chunk.css.map",
+  "static/css/main.f7958d82.chunk.css.map": "/covid-19-dashboard/static/css/main.f7958d82.chunk.css.map",
   "index.html": "/covid-19-dashboard/index.html",
-  "precache-manifest.a09ae1a2c62470b9fd2eba3ea0b58b23.js": "/covid-19-dashboard/precache-manifest.a09ae1a2c62470b9fd2eba3ea0b58b23.js",
+  "precache-manifest.d9765b3b249dba9d2b13b861a24e601e.js": "/covid-19-dashboard/precache-manifest.d9765b3b249dba9d2b13b861a24e601e.js",
   "service-worker.js": "/covid-19-dashboard/service-worker.js"
 }
