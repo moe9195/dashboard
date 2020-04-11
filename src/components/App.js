@@ -5,6 +5,7 @@ import arabicdictionaries from "./arabicCountries";
 import axios from "axios";
 import Loading from "./Loading";
 import { connect } from "react-redux";
+import { Dropdown } from "react-bootstrap";
 
 import { changeLanguage } from "../redux/actions";
 
@@ -176,52 +177,69 @@ class App extends Component {
           <Container className="container-fluid pr-1 pl-1 pt-1 pb-1">
             {/* header */}
             <Container className="row">
-              <Container className="col-md-4 col-lg-12 is-light-text mb-2 small-padding">
+              <Container className=" col-lg-12 is-light-text mb-2 small-padding">
                 <Container
                   className=" card is-card-dark "
                   style={{ flexDirection: "row" }}
                 >
-                  <div className=" change-region">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        onClick={() =>
-                          this.setState({ region: !this.state.region })
-                        }
-                        id="regionswitch"
-                      />{" "}
-                      <label class="custom-control-label" for="regionswitch" />{" "}
-                      {this.state.region && this.props.language
-                        ? "show local data"
-                        : this.state.region && !this.props.language
-                        ? "أظهر الدول العربية"
-                        : !this.state.region && !this.props.language
-                        ? "أظهر جميع الدول "
-                        : " show global data"}
-                    </div>
-                  </div>
                   <div className="dashboard-title">
                     {" "}
                     Coronavirus COVID-19 Global and Arab World Cases Dashboard
                   </div>
-                  <div className=" change-language">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        onClick={() =>
-                          this.props.changeLanguage(!this.props.language)
-                        }
-                        id="languageswitch"
-                      />{" "}
-                      {this.props.language ? "اللغة العربية" : "English"}
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label
-                        class="custom-control-label"
-                        for="languageswitch"
-                      />
-                    </div>
+                  <div className=" change-region">
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        variant="outline-dark"
+                        id="dropdown-basic"
+                      >
+                        <text className="region-title">
+                          {" "}
+                          {!this.state.language ? "Region" : "المنطقة"}
+                        </text>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => this.setState({ region: true })}
+                        >
+                          {!this.state.language ? "Global" : "جميع الدول"}
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => this.setState({ region: false })}
+                        >
+                          {!this.state.language
+                            ? "Arab World"
+                            : "الدول العربية"}
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                    <Dropdown>
+                      {" "}
+                      <Dropdown.Toggle
+                        variant="outline-dark"
+                        id="dropdown-basic"
+                      >
+                        <text className="region-title">
+                          {" "}
+                          {!this.state.language ? "Language" : "اللغة"}
+                        </text>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => this.props.changeLanguage(false)}
+                        >
+                          {!this.state.language ? "اللغة العربية" : "English"}
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => this.props.changeLanguage(true)}
+                        >
+                          {!this.state.language
+                            ? "English"
+                            : "اللغة الإنجليزية"}
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                 </Container>
               </Container>
@@ -285,7 +303,7 @@ class App extends Component {
             {/* row 2  */}
 
             <Container className="row">
-              <Container className="col-md-4 col-lg-6 is-light-text mb-3 small-padding ">
+              <Container className=" col-lg-6 is-light-text mb-3 small-padding ">
                 <Container className="card is-card-dark map-card">
                   <MapChart
                     data={this.state.region ? confirmedDataMENA : confirmedData}
@@ -296,7 +314,7 @@ class App extends Component {
                 </Container>
               </Container>
 
-              <Container className="col-md-4 col-lg-6 is-light-text mb-3 small-padding">
+              <Container className=" col-lg-6 is-light-text mb-3 small-padding">
                 <Container className="card is-card-dark info-card">
                   <CountryInfo
                     global={this.state.global.result}
@@ -308,13 +326,13 @@ class App extends Component {
 
             {/* footer */}
             <Container className="row">
-              <Container className="col-md-4 col-lg-2 is-light-text mb-2 small-padding">
+              <Container className=" col-lg-2 is-light-text mb-2 small-padding">
                 <Container className="card footer-card is-card-dark">
                   <LastUpdated language={this.props.language} />
                 </Container>
               </Container>
 
-              <Container className="col-md-4 col-lg-10 is-light-text mb-2 small-padding">
+              <Container className=" col-lg-10 is-light-text mb-2 small-padding">
                 <Container className="card is-card-dark footer-card">
                   <Footer language={this.props.language} />
                 </Container>

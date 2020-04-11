@@ -5,6 +5,7 @@ import countryData from "./countries";
 import Loading from "./Loading";
 import translate from "./translation";
 import arabicdictionaries from "./arabicCountries";
+import { Modal, Button } from "react-bootstrap";
 
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +16,9 @@ const countriesFull = countryData[1];
 
 class TimeGraph extends Component {
   state = {
-    selector: "confirmed",
-    logarithmic: false
+    selector: "Confirmed",
+    logarithmic: false,
+    show: false
   };
 
   capitalizeFirstLetter = string => {
@@ -45,7 +47,7 @@ class TimeGraph extends Component {
   };
 
   render() {
-    const selectors = ["confirmed", "deaths", "recovered"];
+    const selectors = ["Confirmed", "Deaths", "Recovered"];
 
     const buttons = selectors.map(type => (
       <button
@@ -54,13 +56,13 @@ class TimeGraph extends Component {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 5vh 0vh 5vh" }}
+        style={{ padding: "0vh 2vw 0vh 2vw" }}
         onClick={() => this.handleOnClick(type)}
       >
-        <font style={{ fontSize: "1.5vh" }}>
+        <div className="button-fonts">
           {" "}
           {this.props.language ? type : translate[type]}
-        </font>
+        </div>
       </button>
     ));
 
@@ -94,11 +96,11 @@ class TimeGraph extends Component {
 
     let scatterData = [];
     let select =
-      this.state.selector === "confirmed"
+      this.state.selector === "Confirmed"
         ? 0
-        : this.state.selector === "deaths"
+        : this.state.selector === "Deaths"
         ? 1
-        : this.state.selector === "recovered"
+        : this.state.selector === "Recovered"
         ? 2
         : 3;
 
@@ -126,24 +128,65 @@ class TimeGraph extends Component {
       return <Loading />;
     }
     return (
-      <div className=" padded">
-        &nbsp;&nbsp; <FontAwesomeIcon icon={faQuestionCircle} size="1x" />{" "}
-        &nbsp;&nbsp; {buttons}
-        <div className="btn toggler">
-          <div class="custom-control custom-switch ">
-            <input
-              type="checkbox"
-              class="custom-control-input"
-              onClick={() => this.handleSwitch()}
-              id="switch"
-            />
-            <label class="custom-control-label" for="switch" />
-            <font style={{ fontSize: "1.5vh", color: "#e1e5e8" }}>
+      <div className="padded">
+        <div className="buttons-header">
+          <div className="row button-header">
+            <div
+              className="card help-card"
+              style={{ width: "5%", textAlign: "left", paddingLeft: "0.7rem" }}
+            >
               {" "}
-              {this.props.language ? "Logarithmic" : "لوغاريتمي"}
-            </font>
+              <FontAwesomeIcon
+                onClick={() =>
+                  this.setState({
+                    show: true
+                  })
+                }
+                icon={faQuestionCircle}
+                size="1x"
+              />
+            </div>
+            <div style={{ width: "95%", textAlign: "center" }}>
+              {buttons}
+              <button
+                className={
+                  this.state.logarithmic
+                    ? "btn btn-outline-dark clicked"
+                    : "btn btn-outline-dark"
+                }
+                style={{ padding: "0vh 1.8vw 0vh 1.8vw" }}
+                onClick={() => this.handleSwitch()}
+              >
+                {" "}
+                <div className="button-fonts">
+                  {" "}
+                  {this.props.language ? "Logarithmic" : "لوغاريتمي"}
+                </div>
+              </button>
+            </div>
           </div>
         </div>
+        <Modal
+          show={this.state.show}
+          onHide={() =>
+            this.setState({
+              show: false
+            })
+          }
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {this.props.language
+                ? "Arab Region Time Graph"
+                : "رسم بياني زمني للعالم العربي"}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {this.props.language
+              ? "This time graph shows the number of confirmed cases, total deaths, and daily increase for countries in the Arab World. You can view the graph for a specific country by double clicking its name in the legend bar. You can also click on more than one country to compare their graphs. Clicking on the logarithmic button switches the graph from a linear scale to a logarithmic scale."
+              : "يوضح هذا الرسم البياني الزمني عدد الحالات المؤكدة وإجمالي الوفيات والزيادة اليومية لبلدان العالم العربي. يمكنك عرض الرسم البياني لبلد معين بالنقر المزدوج على اسمه في شريط وسيلة الإيضاح. يمكنك أيضًا النقر على أكثر من دولة لمقارنة الرسوم البيانية الخاصة بهم. يؤدي النقر فوق الزر اللوغاريتمي إلى تبديل الرسم البياني من مقياس خطي إلى مقياس لوغاريتمي"}
+          </Modal.Body>
+        </Modal>
         <div>
           <Plot
             data={scatterData}
@@ -156,7 +199,7 @@ class TimeGraph extends Component {
               plot_bgcolor: "#191d20",
               paper_bgcolor: "#191d20",
               autosize: true,
-              height: 350,
+              height: 355,
               hovermode: "closest",
               margin: { l: 40, r: 20, t: 0, b: 0, pad: 0 },
               legend: {

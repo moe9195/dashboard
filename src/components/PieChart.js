@@ -6,12 +6,14 @@ import Loading from "./Loading";
 import translate from "./translation";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Modal, Button } from "react-bootstrap";
 
 const countries = countryData[1];
 
 class PieChart extends Component {
   state = {
-    selector: "confirmed"
+    selector: "confirmed",
+    show: false
   };
 
   componentDidUpdate(prevProps) {
@@ -25,7 +27,7 @@ class PieChart extends Component {
   };
 
   render() {
-    const selectors = ["confirmed", "deaths", "recovered"];
+    const selectors = ["Confirmed", "Deaths", "Recovered"];
 
     const buttons = selectors.map(type => (
       <button
@@ -34,12 +36,12 @@ class PieChart extends Component {
             ? "btn btn-outline-dark clicked"
             : "btn btn-outline-dark"
         }
-        style={{ padding: "0vh 3vh 0vh 3vh" }}
+        style={{ padding: "0 1vw 0 1vw" }}
         onClick={() => this.handleOnClick(type)}
       >
-        <font style={{ fontSize: "1.5vh" }}>
+        <div className="button-fonts">
           {this.props.language ? type : translate[type]}
-        </font>
+        </div>
       </button>
     ));
 
@@ -76,7 +78,7 @@ class PieChart extends Component {
     });
 
     let data = null;
-    if (this.state.selector === "confirmed") {
+    if (this.state.selector === "Confirmed") {
       data = [
         {
           values: confirmedY,
@@ -86,7 +88,7 @@ class PieChart extends Component {
           rotation: "-20"
         }
       ];
-    } else if (this.state.selector === "deaths") {
+    } else if (this.state.selector === "Deaths") {
       data = [
         {
           values: deathsY,
@@ -113,16 +115,45 @@ class PieChart extends Component {
     }
     return (
       <div className="padded">
-        <div style={{ padding: "0.25rem 0.0rem 0.35rem 0.0rem" }}>
-          {" "}
-          &nbsp;&nbsp; <FontAwesomeIcon
-            icon={faQuestionCircle}
-            size="1x"
-          />{" "}
-          &nbsp;&nbsp;
-          {buttons}
+        <div className="buttons-header">
+          <div className="row button-header">
+            <div
+              className="card help-card"
+              style={{ width: "5%", textAlign: "left", paddingLeft: "0.7rem" }}
+            >
+              {" "}
+              <FontAwesomeIcon
+                onClick={() =>
+                  this.setState({
+                    show: true
+                  })
+                }
+                icon={faQuestionCircle}
+                size="1x"
+              />
+            </div>
+            <div style={{ width: "95%", textAlign: "center" }}>{buttons}</div>
+          </div>
         </div>
-
+        <Modal
+          show={this.state.show}
+          onHide={() =>
+            this.setState({
+              show: false
+            })
+          }
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {this.props.language ? "Pie Chart" : "مخطط دائري"}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {this.props.language
+              ? "This pie chart is divided into slices to illustrate numerical proportion for COVID-19 cases in the Arab Region. You can hover over each slice to see the number of cases in each country, as well as the percentage of cases compared to the total cases inthe Arab World."
+              : "ينقسم هذا المخطط الدائري إلى شرائح لتوضيح الأعداد نسبة الإصابة بفيروس كورونا في العالم العربي. يمكنك المرور فوق كل شريحة لمعرفة عدد الحالات في كل بلد ، وكذلك نسبة الحالات إلى إجمالي الحالات في الوطن العربي"}
+          </Modal.Body>
+        </Modal>
         <div>
           <Plot
             data={data}

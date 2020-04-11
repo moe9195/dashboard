@@ -2,10 +2,10 @@ import arabcountries from "./arabicCountries";
 import countrydata from "./countries";
 
 const translate = {
-  confirmed: "الإجمالي",
-  deaths: "حالات وفاة",
-  recovered: "حالات شفاء",
-  "daily increase": "اصابات يومية",
+  Confirmed: "الإجمالي",
+  Deaths: "حالات وفاة",
+  Recovered: "حالات شفاء",
+  "Daily Increase": "اصابات يومية",
   logarithmic: "لوغاريتمي"
 };
 

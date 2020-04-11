@@ -380,7 +380,54 @@ body {
 a:-webkit-any-link {
   color: #e1e5e8 !important;
   border-style: hidden !important;
-  font-size: 1.5vh;
+  font-size: 0.6vw;
+}
+
+.fa-1x {
+  font-size: 1vw !important;
+}
+
+.button-fonts {
+  font-size: 0.75vw;
+}
+
+.buttons-header {
+  text-align: center !important;
+  padding-bottom: 0vh !important;
+}
+
+.svg-inline--fa {
+  vertical-align: 0px !important;
+}
+
+@media screen and (max-width: 992px) {
+  a:-webkit-any-link {
+    font-size: 1.5vw !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  a:-webkit-any-link {
+    font-size: 2vw !important;
+  }
+  .fa-1x {
+    font-size: 3vw !important;
+  }
+  .button-fonts {
+    font-size: 1vw !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  a:-webkit-any-link {
+    font-size: 4vw !important;
+  }
+  .fa-1x {
+    font-size: 3vw !important;
+  }
+  .button-fonts {
+    font-size: 2.5vw !important;
+  }
 }
 
 .a:hover {
@@ -430,7 +477,13 @@ a:-webkit-any-link {
 
 .is-total-text {
   color: red;
-  font-size: 3rem;
+  font-size: 3vh;
+}
+
+@media screen and (max-width: 992px) {
+  .is-total-text {
+    font-size: 4vh !important;
+  }
 }
 
 .toggler {
@@ -470,22 +523,60 @@ a:-webkit-any-link {
 } */
 
 .change-region {
-  padding: 0vh 5vh 0vh 5vh;
-  text-align: left;
+  padding: 0vh 0vh 0vh 0vh;
+  text-align: right;
   width: 25%;
+  font-size: 1vw;
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.region-title {
+  text-align: left;
+  width: 50%;
+  font-size: 0.75vw;
+}
+
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.25vw;
+  vertical-align: 0.05vw !important;
+  content: "";
+  border-top: 0.3vw solid !important;
+  border-right: 0.25vw solid transparent !important;
+  border-bottom: 0;
+  border-left: 0.25vw solid transparent !important;
 }
 
 .change-language {
   padding: 0vh 5vh 0vh 5vh;
   text-align: right;
   width: 25%;
+  font-size: 1vw;
 }
 
 .dashboard-title {
   text-align: center;
-  width: 50%;
+  padding-left: 25%;
+  width: 75%;
+  font-size: 1.25vw;
 }
 
 .h-33 {
   height: 33.3333333333333%;
+}
+
+.dropdown-menu {
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #0f1316 !important;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+.help-card {
+  background-color: transparent !important;
+  border: hidden !important;
 }
