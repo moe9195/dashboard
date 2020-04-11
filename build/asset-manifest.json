@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/dashboard/static/js/runtime~main.81312d4a.js.map",
   "static/media/style.css": "/dashboard/static/media/CircularStd-Bold.6baed2bf.otf",
   "static/media/all.css": "/dashboard/static/media/fa-solid-900.ec763292.svg",
-  "static/css/1.1c339bfa.chunk.css.map": "/dashboard/static/css/1.1c339bfa.chunk.css.map",
   "static/css/main.5bdebc68.chunk.css.map": "/dashboard/static/css/main.5bdebc68.chunk.css.map",
+  "static/css/1.1c339bfa.chunk.css.map": "/dashboard/static/css/1.1c339bfa.chunk.css.map",
   "index.html": "/dashboard/index.html",
-  "precache-manifest.9a35fd5cc48ef3f755740516a35c01ad.js": "/dashboard/precache-manifest.9a35fd5cc48ef3f755740516a35c01ad.js",
+  "precache-manifest.eb856bdc5c919913df2671d18c863dad.js": "/dashboard/precache-manifest.eb856bdc5c919913df2671d18c863dad.js",
   "service-worker.js": "/dashboard/service-worker.js"
 }
