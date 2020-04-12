@@ -1,7 +1,7 @@
 {
-  "main.css": "/corona/static/css/main.8edeeb13.chunk.css",
-  "main.js": "/corona/static/js/main.0e35d871.chunk.js",
-  "main.js.map": "/corona/static/js/main.0e35d871.chunk.js.map",
+  "main.css": "/corona/static/css/main.b43bc686.chunk.css",
+  "main.js": "/corona/static/js/main.423fb1d7.chunk.js",
+  "main.js.map": "/corona/static/js/main.423fb1d7.chunk.js.map",
   "static/css/1.7795c525.chunk.css": "/corona/static/css/1.7795c525.chunk.css",
   "static/js/1.a886d49b.chunk.js": "/corona/static/js/1.a886d49b.chunk.js",
   "static/js/1.a886d49b.chunk.js.map": "/corona/static/js/1.a886d49b.chunk.js.map",
@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/corona/static/js/runtime~main.20a95f89.js.map",
   "static/media/style.css": "/corona/static/media/CircularStd-Bold.6baed2bf.otf",
   "static/media/all.css": "/corona/static/media/fa-solid-900.ec763292.svg",
-  "static/css/main.8edeeb13.chunk.css.map": "/corona/static/css/main.8edeeb13.chunk.css.map",
+  "static/css/main.b43bc686.chunk.css.map": "/corona/static/css/main.b43bc686.chunk.css.map",
   "static/css/1.7795c525.chunk.css.map": "/corona/static/css/1.7795c525.chunk.css.map",
   "index.html": "/corona/index.html",
-  "precache-manifest.8cf1918b2554da81a18653374b39dcc3.js": "/corona/precache-manifest.8cf1918b2554da81a18653374b39dcc3.js",
+  "precache-manifest.e7689a0c82f642b0ebe3ae81442cfec6.js": "/corona/precache-manifest.e7689a0c82f642b0ebe3ae81442cfec6.js",
   "service-worker.js": "/corona/service-worker.js"
 }
