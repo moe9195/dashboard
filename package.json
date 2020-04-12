@@ -1,6 +1,6 @@
 {
-  "name": "dashboard",
-  "homepage": "https://moe9195.github.io/dashboard/",
+  "name": "corona",
+  "homepage": "https://moe9195.github.io/corona/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
