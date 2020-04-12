@@ -2,6 +2,10 @@
   font-size: 16px !important;
 }
 
+.modal-content {
+  color: black !important;
+}
+
 /* font faces */
 @font-face {
   font-family: "basefont-regular";
