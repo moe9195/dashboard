@@ -32,36 +32,36 @@ self.__precacheManifest = [
     "url": "/corona/static/media/CircularStd-Bold.6baed2bf.otf"
   },
   {
-    "revision": "c1868c9545d2de1cf8488f1dadd8c9d0",
-    "url": "/corona/static/media/fa-brands-400.c1868c95.eot"
+    "revision": "ec3cfddedb8bebd2d7a3fdf511f7c1cc",
+    "url": "/corona/static/media/fa-brands-400.ec3cfdde.woff"
   },
   {
     "revision": "a06da7f0950f9dd366fc9db9d56d618a",
     "url": "/corona/static/media/fa-brands-400.a06da7f0.woff2"
   },
   {
-    "revision": "ec3cfddedb8bebd2d7a3fdf511f7c1cc",
-    "url": "/corona/static/media/fa-brands-400.ec3cfdde.woff"
+    "revision": "c1868c9545d2de1cf8488f1dadd8c9d0",
+    "url": "/corona/static/media/fa-brands-400.c1868c95.eot"
   },
   {
     "revision": "13685372945d816a2b474fc082fd9aaa",
     "url": "/corona/static/media/fa-brands-400.13685372.ttf"
   },
   {
-    "revision": "c20b5b7362d8d7bb7eddf94344ace33e",
-    "url": "/corona/static/media/fa-regular-400.c20b5b73.woff2"
-  },
-  {
     "revision": "261d666b0147c6c5cda07265f98b8f8c",
     "url": "/corona/static/media/fa-regular-400.261d666b.eot"
   },
   {
-    "revision": "db78b9359171f24936b16d84f63af378",
-    "url": "/corona/static/media/fa-regular-400.db78b935.ttf"
+    "revision": "c20b5b7362d8d7bb7eddf94344ace33e",
+    "url": "/corona/static/media/fa-regular-400.c20b5b73.woff2"
   },
   {
     "revision": "f89ea91ecd1ca2db7e09baa2c4b156d1",
     "url": "/corona/static/media/fa-regular-400.f89ea91e.woff"
+  },
+  {
+    "revision": "db78b9359171f24936b16d84f63af378",
+    "url": "/corona/static/media/fa-regular-400.db78b935.ttf"
   },
   {
     "revision": "89ffa3aba80d30ee0a9371b25c968bbb",
