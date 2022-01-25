@@ -17,6 +17,7 @@ import MapChart from "./MapChart";
 import CountryInfo from "./CountryInfo";
 import Footer from "./Footer";
 import LastUpdated from "./LastUpdated";
+import Error from "./Error";
 
 const MENA = countryData[0];
 const dictionary = countryData[4];
@@ -32,7 +33,8 @@ class App extends Component {
     data: null,
     dataCountries: null,
     loading: true,
-    region: false
+    region: false,
+    error: false,
   };
 
   fetchData = async countries => {
@@ -54,7 +56,10 @@ class App extends Component {
         loading: false
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      this.setState({
+        error: error
+      });
     }
   };
 
@@ -131,224 +136,233 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.loading) {
-      const sortedData = this.sortCountries(
-        this.state.dataCountries.result,
-        true
-      );
-
-      // Cases country
-      const confirmedData = sortedData[0][0];
-      const deathsData = sortedData[1][0];
-      const recoveredData = sortedData[2][0];
-
-      const sortedDataMENA = this.sortCountries(
-        this.state.dataCountries.result,
-        false
-      );
-
-      const confirmedDataMENA = sortedDataMENA[0][0];
-      const deathsDataMENA = sortedDataMENA[1][0];
-      const recoveredDataMENA = sortedDataMENA[2][0];
-
-      // Total Cases/Deaths/Recovered
-
-      let totalConfirmedMENA = 0,
-        totalDeathsMENA = 0,
-        totalRecoveredMENA = 0;
-      confirmedDataMENA.map(
-        country => (totalConfirmedMENA += country.confirmed)
-      );
-      deathsDataMENA.map(country => (totalDeathsMENA += country.deaths));
-      recoveredDataMENA.map(
-        country => (totalRecoveredMENA += country.recovered)
-      );
-
-      let totalConfirmed = 0,
-        totalDeaths = 0,
-        totalRecovered = 0;
-      confirmedData.map(country => (totalConfirmed += country.confirmed));
-      deathsData.map(country => (totalDeaths += country.deaths));
-      recoveredData.map(country => (totalRecovered += country.recovered));
-
+    if (this.state.error) {
       return (
-        <Container>
-          {/* content area start */}
-          <Container className="container-fluid pr-1 pl-1 pt-1 pb-1">
-            {/* header */}
-            <Container className="row">
-              <Container className=" col-lg-12 is-light-text mb-2 small-padding">
-                <Container
-                  className=" card is-card-dark "
-                  style={{ flexDirection: "row" }}
-                >
-                  <div className="dashboard-title">
-                    {" "}
-                    Coronavirus COVID-19 Global and Arab World Cases Dashboard
-                  </div>
-                  <div className=" change-region">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-dark"
-                        id="dropdown-basic"
-                      >
-                        <text className="region-title">
-                          {" "}
-                          {!this.state.language ? "Region" : "المنطقة"}
-                        </text>
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item
-                          onClick={() => this.setState({ region: true })}
-                        >
-                          {!this.state.language ? "Global" : "جميع الدول"}
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => this.setState({ region: false })}
-                        >
-                          {!this.state.language
-                            ? "Arab World"
-                            : "الدول العربية"}
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-
-                    <Dropdown>
+        <div>
+          <Error error={this.state.error}/>
+        </div>
+      )
+    } else {
+      if (!this.state.loading) {
+        const sortedData = this.sortCountries(
+          this.state.dataCountries.result,
+          true
+        );
+  
+        // Cases country
+        const confirmedData = sortedData[0][0];
+        const deathsData = sortedData[1][0];
+        const recoveredData = sortedData[2][0];
+  
+        const sortedDataMENA = this.sortCountries(
+          this.state.dataCountries.result,
+          false
+        );
+  
+        const confirmedDataMENA = sortedDataMENA[0][0];
+        const deathsDataMENA = sortedDataMENA[1][0];
+        const recoveredDataMENA = sortedDataMENA[2][0];
+  
+        // Total Cases/Deaths/Recovered
+  
+        let totalConfirmedMENA = 0,
+          totalDeathsMENA = 0,
+          totalRecoveredMENA = 0;
+        confirmedDataMENA.map(
+          country => (totalConfirmedMENA += country.confirmed)
+        );
+        deathsDataMENA.map(country => (totalDeathsMENA += country.deaths));
+        recoveredDataMENA.map(
+          country => (totalRecoveredMENA += country.recovered)
+        );
+  
+        let totalConfirmed = 0,
+          totalDeaths = 0,
+          totalRecovered = 0;
+        confirmedData.map(country => (totalConfirmed += country.confirmed));
+        deathsData.map(country => (totalDeaths += country.deaths));
+        recoveredData.map(country => (totalRecovered += country.recovered));
+  
+        return (
+          <Container>
+            {/* content area start */}
+            <Container className="container-fluid pr-1 pl-1 pt-1 pb-1">
+              {/* header */}
+              <Container className="row">
+                <Container className=" col-lg-12 is-light-text mb-2 small-padding">
+                  <Container
+                    className=" card is-card-dark "
+                    style={{ flexDirection: "row" }}
+                  >
+                    <div className="dashboard-title">
                       {" "}
-                      <Dropdown.Toggle
-                        variant="outline-dark"
-                        id="dropdown-basic"
-                      >
-                        <text className="region-title">
-                          {" "}
-                          {!this.state.language ? "Language" : "اللغة"}
-                        </text>
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item
-                          onClick={() => this.props.changeLanguage(false)}
+                      Coronavirus COVID-19 Global and Arab World Cases Dashboard
+                    </div>
+                    <div className=" change-region">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="outline-dark"
+                          id="dropdown-basic"
                         >
-                          {!this.state.language ? "اللغة العربية" : "English"}
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => this.props.changeLanguage(true)}
+                          <text className="region-title">
+                            {" "}
+                            {!this.state.language ? "Region" : "المنطقة"}
+                          </text>
+                        </Dropdown.Toggle>
+  
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            onClick={() => this.setState({ region: true })}
+                          >
+                            {!this.state.language ? "Global" : "جميع الدول"}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => this.setState({ region: false })}
+                          >
+                            {!this.state.language
+                              ? "Arab World"
+                              : "الدول العربية"}
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+  
+                      <Dropdown>
+                        {" "}
+                        <Dropdown.Toggle
+                          variant="outline-dark"
+                          id="dropdown-basic"
                         >
-                          {!this.state.language
-                            ? "English"
-                            : "اللغة الإنجليزية"}
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
+                          <text className="region-title">
+                            {" "}
+                            {!this.state.language ? "Language" : "اللغة"}
+                          </text>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            onClick={() => this.props.changeLanguage(false)}
+                          >
+                            {!this.state.language ? "اللغة العربية" : "English"}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => this.props.changeLanguage(true)}
+                          >
+                            {!this.state.language
+                              ? "English"
+                              : "اللغة الإنجليزية"}
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </Container>
                 </Container>
               </Container>
-            </Container>
-            {/* row 1  */}
-            <Container className="row">
-              {/* counter list  */}
-              <Container className="col-lg-2 col-sm-6 is-light-text mb-3 small-padding">
-                <Container className="card grid-card is-card-dark">
-                  <TotalCounter
-                    data={
-                      this.state.region
-                        ? [
-                            totalConfirmedMENA,
-                            totalDeathsMENA,
-                            totalRecoveredMENA
-                          ]
-                        : [totalConfirmed, totalDeaths, totalRecovered]
-                    }
-                    language={this.props.language}
-                  />
+              {/* row 1  */}
+              <Container className="row">
+                {/* counter list  */}
+                <Container className="col-lg-2 col-sm-6 is-light-text mb-3 small-padding">
+                  <Container className="card grid-card is-card-dark">
+                    <TotalCounter
+                      data={
+                        this.state.region
+                          ? [
+                              totalConfirmedMENA,
+                              totalDeathsMENA,
+                              totalRecoveredMENA
+                            ]
+                          : [totalConfirmed, totalDeaths, totalRecovered]
+                      }
+                      language={this.props.language}
+                    />
+                  </Container>
+                </Container>
+                {/* counter  */}
+                <Container className="col-lg-2 col-sm-6 is-light-text mb-3 small-padding">
+                  <Container className="card grid-card is-card-dark">
+                    <Counter
+                      data={
+                        this.state.region
+                          ? [confirmedDataMENA, deathsDataMENA, recoveredDataMENA]
+                          : [confirmedData, deathsData, recoveredData]
+                      }
+                      loading={this.state.loading}
+                      language={this.props.language}
+                    />
+                  </Container>
+                </Container>
+  
+                {/* timegraph  */}
+                <Container className="col-lg-5 col-sm-6 is-light-text mb-3 small-padding">
+                  <Container className="card grid-card is-card-dark">
+                    <TimeGraph
+                      data={this.state.timeData}
+                      loading={this.state.loading}
+                      language={this.props.language}
+                    />
+                  </Container>
+                </Container>
+                {/* pie chart  */}
+                <Container className="col-lg-3 col-sm-6 is-light-text mb-3 small-padding">
+                  <Container className="card grid-card is-card-dark">
+                    <PieChart
+                      data={[confirmedData, deathsData, recoveredData]}
+                      loading={this.state.loading}
+                      language={this.props.language}
+                    />
+                  </Container>
                 </Container>
               </Container>
-              {/* counter  */}
-              <Container className="col-lg-2 col-sm-6 is-light-text mb-3 small-padding">
-                <Container className="card grid-card is-card-dark">
-                  <Counter
-                    data={
-                      this.state.region
-                        ? [confirmedDataMENA, deathsDataMENA, recoveredDataMENA]
-                        : [confirmedData, deathsData, recoveredData]
-                    }
-                    loading={this.state.loading}
-                    language={this.props.language}
-                  />
+  
+              {/* row 2  */}
+  
+              <Container className="row">
+                <Container className=" col-lg-6 is-light-text mb-3 small-padding ">
+                  <Container className="card is-card-dark map-card">
+                    <MapChart
+                      data={this.state.region ? confirmedDataMENA : confirmedData}
+                      loading={this.state.loading}
+                      region={this.state.region}
+                      language={this.props.language}
+                    />
+                  </Container>
+                </Container>
+  
+                <Container className=" col-lg-6 is-light-text mb-3 small-padding">
+                  <Container className="card is-card-dark info-card">
+                    <CountryInfo
+                      global={this.state.global.result}
+                      language={this.props.language}
+                    />
+                  </Container>
                 </Container>
               </Container>
-
-              {/* timegraph  */}
-              <Container className="col-lg-5 col-sm-6 is-light-text mb-3 small-padding">
-                <Container className="card grid-card is-card-dark">
-                  <TimeGraph
-                    data={this.state.timeData}
-                    loading={this.state.loading}
-                    language={this.props.language}
-                  />
+  
+              {/* footer */}
+              <Container className="row">
+                <Container className=" col-lg-2 is-light-text mb-2 small-padding">
+                  <Container className="card footer-card is-card-dark">
+                    <LastUpdated language={this.props.language} />
+                  </Container>
                 </Container>
-              </Container>
-              {/* pie chart  */}
-              <Container className="col-lg-3 col-sm-6 is-light-text mb-3 small-padding">
-                <Container className="card grid-card is-card-dark">
-                  <PieChart
-                    data={[confirmedData, deathsData, recoveredData]}
-                    loading={this.state.loading}
-                    language={this.props.language}
-                  />
-                </Container>
-              </Container>
-            </Container>
-
-            {/* row 2  */}
-
-            <Container className="row">
-              <Container className=" col-lg-6 is-light-text mb-3 small-padding ">
-                <Container className="card is-card-dark map-card">
-                  <MapChart
-                    data={this.state.region ? confirmedDataMENA : confirmedData}
-                    loading={this.state.loading}
-                    region={this.state.region}
-                    language={this.props.language}
-                  />
-                </Container>
-              </Container>
-
-              <Container className=" col-lg-6 is-light-text mb-3 small-padding">
-                <Container className="card is-card-dark info-card">
-                  <CountryInfo
-                    global={this.state.global.result}
-                    language={this.props.language}
-                  />
-                </Container>
-              </Container>
-            </Container>
-
-            {/* footer */}
-            <Container className="row">
-              <Container className=" col-lg-2 is-light-text mb-2 small-padding">
-                <Container className="card footer-card is-card-dark">
-                  <LastUpdated language={this.props.language} />
-                </Container>
-              </Container>
-
-              <Container className=" col-lg-10 is-light-text mb-2 small-padding">
-                <Container className="card is-card-dark footer-card">
-                  <Footer language={this.props.language} />
+  
+                <Container className=" col-lg-10 is-light-text mb-2 small-padding">
+                  <Container className="card is-card-dark footer-card">
+                    <Footer language={this.props.language} />
+                  </Container>
                 </Container>
               </Container>
             </Container>
           </Container>
-        </Container>
-      );
-    } else {
-      return (
-        <div>
-          {" "}
-          <Loading />
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div>
+            {" "}
+            <Loading />
+          </div>
+        );
+      }
     }
+  
   }
 }
 
