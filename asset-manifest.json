@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/corona/static/js/runtime~main.20a95f89.js.map",
   "static/media/style.css": "/corona/static/media/CircularStd-Bold.6baed2bf.otf",
   "static/media/all.css": "/corona/static/media/fa-solid-900.ec763292.svg",
-  "static/css/main.6cfc2629.chunk.css.map": "/corona/static/css/main.6cfc2629.chunk.css.map",
   "static/css/1.ccf761c3.chunk.css.map": "/corona/static/css/1.ccf761c3.chunk.css.map",
+  "static/css/main.6cfc2629.chunk.css.map": "/corona/static/css/main.6cfc2629.chunk.css.map",
   "index.html": "/corona/index.html",
-  "precache-manifest.88022e4207fab45655aef3115f19ae50.js": "/corona/precache-manifest.88022e4207fab45655aef3115f19ae50.js",
+  "precache-manifest.e8692102adcf1acfc1a521dd3a515d70.js": "/corona/precache-manifest.e8692102adcf1acfc1a521dd3a515d70.js",
   "service-worker.js": "/corona/service-worker.js"
 }
